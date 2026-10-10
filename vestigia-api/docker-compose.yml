@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    container_name: vestigia-api
+    ports:
+      - "${APP_PORT:-8080}:80"
+    env_file:
+      - .env
+    volumes:
+      # live-reload PHP while developing
+      - ./api:/var/www/app/api
+      - ./lib:/var/www/app/lib
+    restart: unless-stopped
